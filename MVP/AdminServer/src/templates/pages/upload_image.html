@@ -1,0 +1,31 @@
+{% extends "base_template.html" %}
+
+{% block title %}upload_image{% endblock %}
+
+{% block additionalLinks %}
+    <link rel="stylesheet" href="/static/css/new.css" />
+{% endblock %}
+
+{% block pageContent %}
+<h2>
+    Save a docker image as .tar archive with : 
+</h2>
+<div class="docker_shell">
+    docker save -o archive_name.tar image_name 
+</div>
+
+<form method="POST" action="#" enctype="multipart/form-data">
+    <h1> 
+        New Image
+    </h1>
+    <p>
+        File : 
+    </p>
+    <input type="file" name="image" required />
+    <p>
+        Description : 
+    </p>
+    <textarea name="description"></textarea>
+    <input type="submit" value="upload"/>
+</form>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base_template.html" %}
+
+{% block title %}my_images{% endblock %}
+
+{% block additionalLinks %}
+    <link rel="stylesheet" href="/static/css/to_new.css" />
+    <link rel="stylesheet" href="/static/css/gallerie.css" />
+{% endblock %}
+
+{% block pageContent %}
+    <a id="link_to_new" href="/upload_image/">
+        <img alt="add icon" src="/static/img/icon/add.svg" />
+        upload a new image
+    </a>
+
+    {% if "images" in data.keys() and data["images"] %}
+        <h1> my images : </h1>
+        <div id="artefact_gallerie">
+            {% for image in data["images"] %}
+            <div class="artefact">
+                <div class="artefact_header_offset"></div>
+                <h3> {{image[0]}} </h3>
+                <img alt="docker image icon" src="/static/img/icon/image_black.svg">
+                <ul>
+                    <li>{{image[1]}}</li>
+                    <li>{{image[2]}}</li>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

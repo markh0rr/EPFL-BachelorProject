@@ -1,0 +1,191 @@
+body
+{
+    margin : 0px;
+    padding : 0px;
+    font-family : sans-serif;
+}
+
+/*
+    The website header with 
+    the title and the logo
+*/
+header 
+{
+    z-index : 1;
+    
+    position : fixed;
+    top : 0px;
+    left : 0px;
+    width : 100%;
+    height : 100px;
+
+    background : linear-gradient(to bottom right, rgb(80, 80, 87),rgb(148, 148, 157));
+    border-bottom : 7px solid #46F0BF;
+
+    display : flex;
+    flex-direction: row;
+}
+header h1
+{ 
+    align-self: center;
+    font-size : 3em;
+}
+header h1 a
+{
+    color : rgb(99, 163, 237);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    text-decoration: none;
+}
+header img
+{
+    height : 151px;
+    margin-left : 10px;
+    margin-top : 10px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* 
+    The nav bar, 
+    floating on the left border of the website
+    and contains 
+    - the links to the different website pannels
+    - the account pannel (login, signup, logout, my_account)
+*/
+nav
+{
+    position : fixed;
+    top : 106px;
+    bottom : 0px;
+    background-color: black;
+    width : 300px;
+    padding : 0px;
+
+    overflow-x : hidden;
+    overflow-y : hidden;
+}
+nav::-webkit-scrollbar {
+    width: 0px;
+}
+.nav-content 
+{
+    position : absolute;
+    top : 70px;
+    bottom : 0px;
+    width : 300px;
+    margin : 0px;
+
+    display : flex;
+    flex-direction: column;
+
+    overflow-x : hidden;
+    overflow-y : scroll;
+}
+.nav-content::-webkit-scrollbar {
+    width: 0px;
+}
+.nav-content a
+{
+    text-decoration : none;
+    -webkit-user-select: none;
+    cursor : pointer;
+    display : flex;
+    flex-direction: row;
+    align-items: center;
+
+    transition : 100ms transform;
+    &:hover{
+        transform : scale(1.1);
+    }
+}
+.nav-content a img 
+{
+    height : 35px;
+}
+.nav-content a p 
+{
+    color : white;
+    font-size : 1.3em;
+}
+.user-options
+{
+    position : absolute;
+    top : 0px;
+    width : 300px;
+    display : flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.user-options a
+{
+    text-decoration: none;
+    font-size : 1.2em;
+    color : #46F0BF;
+}
+.user-options p
+{
+    font-size : 1.2em;
+    color : #46F0BF;
+    margin-inline : 10px;
+}
+
+
+/*
+    The container for the main page content
+*/
+.page-content
+{
+    z-index : -1;
+    position : fixed;
+    left : 300px; 
+    right : 0px; 
+    top : 106px;
+    bottom : 0px;
+    overflow-x : hidden;
+    overflow-y : scroll;
+    padding : 20px;
+}
+
+
+/*
+    The popup element 
+*/
+#sliding-popup
+{
+    height : wrap;
+    position : fixed;
+    z-index : 5;
+    background : white;
+    width : 40%;
+    height : 100px;
+    padding-block : 15px;
+    padding-inline : 20px;
+    top : 0px;
+    right : -100%;
+
+    transition : right 500ms, top 250ms;
+    font-family : Arial, Helvetica, sans-serif;
+    font-size : 1.9em;
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 3px 3px 3px rgba(174, 171, 171, 0.527);
+}
+.error 
+{
+    border-left : 20px solid red;
+    color : red;
+}
+.inform
+{
+    border-left : 20px solid rgb(0, 42, 255);
+    color :rgb(0, 42, 255);
+}
+.success
+{
+    border-left : 20px solid rgb(75, 167, 59);
+    color : rgb(75, 167, 59);
+}

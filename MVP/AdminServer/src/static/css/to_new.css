@@ -1,0 +1,23 @@
+#link_to_new
+{
+    background-color: #46F0BF;
+    color : white;
+    text-decoration: none;
+    padding-right : 20px;
+    padding-block : 5px;
+    border-radius : 20px;
+    display : flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width : fit-content;
+    font-size : 1.2em;
+    font-weight : bold;
+    -webkit-user-modify: none;
+    user-select: none;
+}
+
+#link_to_new img
+{
+    height : 35px;
+}

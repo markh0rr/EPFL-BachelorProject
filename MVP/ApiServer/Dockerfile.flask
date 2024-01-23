@@ -1,0 +1,14 @@
+# the containerized Api Server in development mode 
+# the /src/ folder is ment to be mounted on the container 
+# and prevents the need for rebuilt because of file changes 
+
+FROM alpine:3.14
+RUN apk add python3
+RUN apk add py3-pip
+
+ADD ./config/ /config/
+WORKDIR /config/
+RUN pip3 install -r requirements.txt 
+
+WORKDIR /webApp/ 
+CMD ["python3", "__init__.py"]

@@ -1,0 +1,60 @@
+.page-content
+{
+    background-image: url("/static/img/backgrounds/ocean.jpg");
+    background-repeat: no-repeat;
+}
+
+form
+{
+    position : absolute;
+    left : 50%;
+    top : 25%;
+    width : 500px;
+    transform : translate(-50%, 0);
+
+    display: flex;
+    flex-direction: column;
+
+    background : black;
+    border : 1px solid black;
+    border-radius : 10px;
+
+    padding-block : 30px;
+    padding-inline : 30px;
+}
+form section
+{
+    display: flex;
+    flex-direction: column;
+    margin-bottom : 30px; 
+}
+form input
+{
+    font-size : 1.4em;
+    margin : 10px;
+    padding-block : 5px;
+    padding-inline : 10px;
+    border-radius: 10px;
+    border : 1px solid black;
+}
+form input[type=submit]
+{
+    color : black; 
+    background : #8bf6d7;
+    box-shadow : 0px 4px 0px 1px #46F0BF;
+    border : none;
+    cursor : pointer;
+}
+
+.side_by_side
+{
+
+    display: flex;
+    flex-direction: row;    
+    width : 100%;
+    justify-content: space-between;
+}
+.side_by_side *
+{
+    width : 45%;
+}

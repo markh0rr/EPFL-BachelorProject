@@ -1,0 +1,49 @@
+@font-face
+{
+    font-family : shell;
+    src : url("/static/fonts/Roboto-Regular.ttf");
+}
+
+
+.docker_shell
+{
+    padding-inline : 20px;
+    padding-block : 15px;
+    border-radius: 5px;
+    font-size : 1.1em;
+    width : fit-content;
+    height: fit-content;
+    font-family: shell;
+    
+    background-color: rgb(35, 45, 60);
+    color : rgb(36, 150, 237);
+
+    overflow: scroll;
+    white-space: nowrap;
+}
+
+form
+{
+    display: flex;
+    flex-direction: column;
+    width : 400px;
+    margin : auto;
+    margin-top : 5%;
+}
+
+form h1
+{
+    text-align: center;
+}
+
+form input, textarea
+{
+    resize: none;
+    padding : 20px;
+    font-size : 1.1em;
+}
+
+form input[type="submit"]
+{
+    margin-top : 20px;
+}

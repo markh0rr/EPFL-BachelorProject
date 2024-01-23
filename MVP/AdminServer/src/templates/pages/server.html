@@ -1,0 +1,145 @@
+{% extends "base_template.html" %}
+
+{% block title %}server{% endblock %}
+
+{% block additionalLinks %}
+    <link rel="stylesheet" href="/static/css/server.css" />
+{% endblock %}
+
+{% block pageContent %}
+<h1>
+    SERVER [{{data["sid"][:3]}}...{{data["sid"][-4:]}}]
+</h1>
+<h2>
+    Informations
+</h2>
+<ul>
+    <li> {{ data["register_date"] }}, join cluster DateTime </li>
+    {% if "latest_activity" in data.keys() %}
+        <li> {{ data["latest_activity"] }}, latest activity DateTime </li>
+    {% endif %}
+    <li> {{ data["time"] }}, current DateTime </li>
+</ul>
+<h2>
+    Schedule a new task 
+</h2>
+<select id="task-type">
+    <option value="download_image" selected>
+        Download image
+    </option>
+    <option value="execute_script">
+        Execute Script
+    </option>
+</select>
+<div class="task" id="download-image">
+    {% if "images" in data.keys() %}
+        <form method="POST" action="#">
+            <select name="image">
+                {% for image in data["images"] %}
+                    <option value="{{image[0]}}">{{image[1]}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="schedule" />
+        </form>
+    {% else %}
+        <a id="link_to_new" href="/upload_image/">
+            <img alt="add icon" src="/static/img/icon/add.svg" />
+            upload a new image
+        </a>
+    {% endif %}
+</div>
+<div class="task" id="execute-script" style="display:none">
+    {% if "scripts" in data.keys() %}
+        <form method="POST" action="#">
+            <select name="script">
+                {% for script in data["scripts"] %}
+                    <option value="{{script[0]}}">{{script[1]}}</option>
+                {% endfor %}
+            </select>
+            <div id="capture_output">
+                <input type="checkbox" name="capture_output" />
+                <p>capture output </p>
+            </div>
+            <input type="submit" value="schedule" />
+        </form>
+    {% else %}
+        <a id="link_to_new" href="/upload_script/">
+            <img alt="" src="/static/img/icon/add.svg" />
+            upload a new script
+        </a>
+    {% endif %}
+</div>
+
+<script>
+    const TASK_TYPE = document.getElementById("task-type");
+    const DOWNLOAD_IMAGE = document.getElementById("download-image");
+    const EXECUTE_SCRIPT = document.getElementById("execute-script");
+    
+    TASK_TYPE.addEventListener("change", e => {
+        switch(TASK_TYPE.value){
+            case "download_image" : 
+                DOWNLOAD_IMAGE.style.display = "block";
+                EXECUTE_SCRIPT.style.display = "none";
+                break;
+            case "execute_script":
+                EXECUTE_SCRIPT.style.display = "block";
+                DOWNLOAD_IMAGE.style.display = "none";
+                break;
+        }
+    });
+</script>
+
+{% if "scheduled_tasks" in data.keys() %}
+    <h2>
+        Scheduled tasks 
+    </h2>
+    <div>
+    {% for task in data["scheduled_tasks"] %}
+        <div class="task">
+            {% if task["task_type"] == "download_image" %}
+                <img src="/static/img/icon/download_black.svg" alt="download icon" />
+            {% elif task["task_type"] == "execute_script"%}
+                <img src="/static/img/icon/run_black.svg" alt="script icon"/>
+            {% endif %}
+            {{ task["file_name"] }}
+        </div>
+    {% endfor %}
+    </div>
+{% endif %}
+
+{% if "completed_tasks" in data.keys() %}
+    <h2>
+        Completed tasks 
+    </h2>
+    <div>
+    {% for task in data["completed_tasks"] %}
+        <div class="task">
+            {% if task[0]["task_type"] == "download_image" %}
+                <img src="/static/img/icon/download_black.svg" alt="download icon" />
+            {% elif task[0]["task_type"] == "execute_script"%}
+                <img src="/static/img/icon/run_black.svg" alt="script icon"/>
+            {% endif %}
+            
+            {{ task[0]["file_name"] }}
+        </div>
+
+        {% if task[1] %} 
+            <div class="feedback">   
+            {% if "stdout_feedback" in task[1].keys() and task[1]["stdout_feedback"]%}
+                <h3>stdout</h3>
+                <div class="stdout">
+                    {{ task[1]["stdout_feedback"] }}
+                </div>
+            {% endif %}
+            {% if "stderr_feedback" in task[1].keys() and task[1]["stderr_feedback"] %}
+                <h3>stderr</h3>
+                <div class="stderr">
+                    {{ task[1]["stderr_feedback"] }}
+                </div>
+            {% endif %}
+            </div>    
+        {% endif %} 
+    {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

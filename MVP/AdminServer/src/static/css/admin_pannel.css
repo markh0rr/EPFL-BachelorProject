@@ -1,0 +1,11 @@
+nav 
+{
+    position : fixed;
+    z-index : -1;
+    top : 0px;
+    left : 0px;
+    bottom : 0px;
+    width : 200px;
+    position : relative;
+    background-color: rgb(68, 68, 68);
+}

@@ -1,0 +1,52 @@
+.page-content h1
+{
+    text-align : center;
+}
+
+#download_bundle
+{
+    color : black;
+    display : flex;
+    flex-direction : row;
+    width : fit-content;
+    align-items: center;
+    transition : transform 250ms;
+    &:hover
+    {
+        transform : scale(1.1);
+    }
+}
+
+#download_bundle img 
+{
+    height : 35px;
+    margin-inline : 10px;
+}
+
+.status 
+{
+    height : 20px;
+    width : 20px;
+    border-radius: 50%;
+    margin-top : 10px;
+}
+.unknown 
+{
+    border : 3px solid black;
+}
+.super-active
+{
+    background-color:  #46F0BF;
+}
+.active 
+{   
+    background-color: rgb(40, 177, 226);
+}       
+.within-hour
+{
+    background-color: rgb(255, 157, 0);
+}
+.inactive 
+{
+    background-color: rgb(255, 0, 0);
+}

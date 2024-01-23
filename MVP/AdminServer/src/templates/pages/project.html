@@ -1,0 +1,34 @@
+{% extends "base_template.html" %}
+
+{% block title %}project{% endblock %}
+
+{% block additionalLinks %}
+    <link rel="stylesheet" href="/static/css/project.css" />
+    <link rel="stylesheet" href="/static/css/gallerie.css" />
+{% endblock %}
+
+{% block pageContent %}
+    <h1>{{data["project_name"]}}</h1>
+    <h2> Client setup module </h2>
+    <a id="download_bundle" href="/get_client_bundle/{{data["project_id"]}}">
+        <img alt="zip icon" src="/static/img/icon/zip.png" />
+        client bundle 
+    </a>
+    <h2> Description </h2>
+    <p>
+        {{data["project_description"]}}
+    </p>
+    {% if data["infrastructure"] %}
+        <h2> Infrastructure : </h2>
+        <div id="artefact_gallerie">
+        {% for machine in data["infrastructure"] %}
+            <a href="/server/{{data['project_id']}}/{{machine['sid']}}" class="artefact">
+                <div class="artefact_header_offset"></div>
+                <h3>Server [{{machine["sid"][:3]}}...{{machine["sid"][-4:]}}]</h3>
+                <img alt="server icon" src="/static/img/icon/server.jpeg" />
+                <div class="status {{machine['status']}}"></div>
+            </a>
+        {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

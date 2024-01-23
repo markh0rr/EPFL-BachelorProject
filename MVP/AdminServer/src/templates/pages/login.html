@@ -1,0 +1,15 @@
+{% extends "base_template.html" %} 
+
+{% block title %}login{% endblock title %}
+
+{% block additionalLinks %}
+    <link rel="stylesheet" href="/static/css/user_form.css" />
+{% endblock %}
+
+{% block pageContent %}
+    <form action="/login" method="POST">
+        <input type="text" required placeholder="username" name="username" />
+        <input type="password" required placeholder="password" name="password" />
+        <input type="submit" value="login" />
+    </form>
+{% endblock %}

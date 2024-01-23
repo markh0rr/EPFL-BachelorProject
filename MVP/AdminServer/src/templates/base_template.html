@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kapitan | {% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/png" href="/static/img/kapitan/favicon.png" />
+    <link rel="stylesheet" href="/static/css/base_template.css" />
+    <script src="/static/js/popup.js" defer></script>
+    {% block additionalLinks %}{% endblock %}
+</head>
+<body>
+    <header>
+        <img alt="kapitan logo" src="/static/img/kapitan/logo.svg" />
+        <h1><a href="/home/"> кapiтan </a></h1>  
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <p id="sliding-popup" class="{{messages[0][0]}}">
+                {{messages[0][1]}}
+            </p>
+        {% endif %}
+    {% endwith %}
+
+    <nav>
+        <div class="user-options">
+            {% if data and 'is_logged_in' in data.keys() and data['is_logged_in'] %}
+                <a href="/my_account/">my_account</a>
+                <p>|</p>
+                <a href="/logout/">logout</a>
+            {% else %}
+                <a href="/login/">login</a>
+                <p>|</p>
+                <a href="/signup/">signup</a>
+            {% endif %}
+        </div>
+
+        <div class="nav-content">
+            <a href="/my_projects/">
+                <img alt="projects" src="/static/img/icon/project.svg" />
+                <p> projects </p>
+            </a>
+            <a href="/my_images/">
+                <img alt="image library" src="/static/img/icon/container.svg" />
+                <p> images </p>
+            </a>
+            <a href="/my_scripts/">
+                <img alt="image library" src="/static/img/icon/script.svg" />
+                <p> scripts </p>
+            </a>
+        </div>
+    </nav>
+
+    <div class="page-content">
+        {% block pageContent %}{% endblock %}
+    </div>
+
+    {% block absoluteElements %}{% endblock %}
+</body>    
+</html>

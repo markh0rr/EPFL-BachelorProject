@@ -1,0 +1,28 @@
+{% extends "base_template.html" %}
+
+{% block title %}
+    my_projects
+{% endblock %}
+
+{% block additionalLinks %}
+<link rel="stylesheet" href="/static/css/new.css" />
+{% endblock %}
+
+{% block pageContent %}
+    <form method="POST" action="#">
+        <h1> 
+            New Project 
+        </h1>
+        <p>
+            Name : 
+        </p>
+        <input type="text" name="project_name" plaholder="project name" />
+        <p>
+            Description : 
+        </p>
+        <textarea name="project_description">
+
+        </textarea>
+        <input type="submit" value="register" />
+    </form>
+{% endblock %}

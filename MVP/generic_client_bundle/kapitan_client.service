@@ -1,0 +1,14 @@
+[Unit]
+Description=KapitanClient
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /etc/client_bundle/client.py
+Restart=always
+User=root
+Group=root
+Environment=PYTHONUNBUFFERED=1
+WorkingDirectory=/etc/client_bundle
+
+[Install]
+WantedBy=multi-user.target

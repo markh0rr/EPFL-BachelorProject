@@ -1,0 +1,36 @@
+{% extends "base_template.html" %}
+
+{% block title %}
+    my_scripts
+{% endblock %}
+
+{% block additionalLinks %}
+<link rel="stylesheet" href="/static/css/to_new.css" />
+<link rel="stylesheet" href="/static/css/gallerie.css" />
+{% endblock %}
+
+{% block pageContent %}
+    <a id="link_to_new" href="/upload_script/">
+        <img alt="" src="/static/img/icon/add.svg" />
+        upload a new script
+    </a>
+
+    {% if "scripts" in data.keys() and data["scripts"] %}
+        <h1> my scripts : </h1>
+        <div id="artefact_gallerie">
+            {% for script in data["scripts"] %}
+            <div class="artefact">
+                <div class="artefact_header_offset"></div>
+                <h3>
+                    {{script[0]}}
+                </h3>
+                <img alt="script icon" src="/static/img/icon/script_black.svg" />
+                <ul>
+                    <li>"{{script[1]}}"</li>
+                    <li>{{script[2]}}</li>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base_template.html" %}
+
+{% block title %}signup{% endblock %}
+
+{% block additionalLinks %}
+    <link rel="stylesheet" href="/static/css/user_form.css" />
+{% endblock %}
+
+{% block pageContent %}
+    <form action="#" method="POST">
+        <section>
+            <div class="side_by_side">
+                <input type="text" name="firstname" placeholder="first name" required />
+                <input type="text" name="lastname" placeholder="last name" required />    
+            </div>
+            <input type="email" name="email" placeholder="email" required />
+        </section>
+        <div></div>
+        <section>
+            <input type="text" name="username" placeholder="username" required />
+            <input type="password" name="password" placeholder="password" required />
+        </section>
+        <input type="submit" value="signup" />
+    </form>
+{% endblock %}

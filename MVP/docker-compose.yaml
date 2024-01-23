@@ -1,0 +1,44 @@
+services:
+  kapitan_db :
+    image : kapitan_db
+    restart: always
+    volumes :
+    - ./mysql:/var/lib/mysql # /host_folder_to_host_mysql_folder:/var/lib/mysql
+    environment : 
+      - MYSQL_ROOT_PASSWORD=tobechanged
+  admin_server :
+    image : kapitan_admin_server
+    ports : 
+      - 7474:5454
+    restart: always
+    depends_on :
+      - kapitan_db
+    volumes :
+      - ./server_keys/:/server_ssl/ # /host_certificate_folder/:/server_ssl/
+      - ./user_files:/user_files # /host_folder_to_store_files/:/user_files/
+      - ./generic_client_bundle/:/generic_client_bundle/
+    environment :
+      - FLASK_SECRET_PASSWORD=tobechanged
+      - TOKEN_SIGNING_SECRET=a_long_secret_string_that_is_the_same_for_both_server
+      - DB_USER=root
+      - DB_PASSWORD=tobechanged
+      - DB_NAME=kapitan_db 
+      - DB_HOSTNAME=kapitan_db
+      - API_SERVER_IP=localhost
+  api_server:
+    image : kapitan_api_server
+    ports : 
+      - 9494:5454
+    restart: always
+    depends_on :
+      - kapitan_db
+    volumes : 
+      - ./server_keys/:/server_ssl/ # /host_certificate_folder:/server_ssl
+      - ./user_files:/user_files # /host_folder_to_store_files/:/user_files/
+    environment :
+      - FLASK_SECRET_PASSWORD=tobechanged
+      - TOKEN_SIGNING_SECRET=a_long_secret_string_that_is_the_same_for_both_server
+      - DB_USER=root
+      - DB_PASSWORD=tobechanged
+      - DB_NAME=kapitan_db 
+      - DB_HOSTNAME=kapitan_db

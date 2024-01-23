@@ -1,0 +1,29 @@
+{% extends "base_template.html" %}
+
+{% block title %}my_projects{% endblock %}
+
+{% block additionalLinks %}
+    <link rel="stylesheet" href="/static/css/to_new.css" />
+    <link rel="stylesheet" href="/static/css/gallerie.css" />
+{% endblock %}
+
+{% block pageContent %}
+    <a id="link_to_new" href="/new_project/">
+        <img alt="add icon" src="/static/img/icon/add.svg" />
+        register a new project 
+    </a>
+
+    {% if "projects" in data.keys() and data["projects"] %}
+        <h1> my projects : </h1>
+        <div id="artefact_gallerie">
+        {% for project in data["projects"] %}   
+        <a class="artefact" href="/project/{{ project[0]}}"> 
+            <div class="artefact_header_offset"></div>
+            <h3>{{ project[1] }}</h3>
+            <img alt="project icon" src="/static/img/icon/project_black.svg"/>
+            <p>{{ project[2] }}</p>
+        </a>
+        {% endfor %}
+        </div>  
+    {% endif %}
+{% endblock %}

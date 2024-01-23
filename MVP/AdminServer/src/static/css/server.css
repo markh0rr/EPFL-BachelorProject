@@ -1,0 +1,99 @@
+.page-content h1
+{
+    text-align: center;
+}
+.task 
+{
+    margin-left : 20px;
+    margin-block : 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.task img 
+{
+    height : 35px;
+}
+#link_to_new
+{
+    background-color: #46F0BF;
+    color : white;
+    text-decoration: none;
+    padding-right : 20px;
+    padding-block : 5px;
+    border-radius : 20px;
+    display : flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width : fit-content;
+    font-size : 1.1em;
+    font-weight : bold;
+    -webkit-user-modify: none;
+    user-select: none;
+}
+#link_to_new img
+{
+    height : 35px;
+}
+select 
+{
+    border : 3px solid #46F0BF;
+    padding : 10px;
+    font-size : 1.1em;
+}
+.page-content form
+{
+    display: flex;
+    flex-direction: column;
+    width : fit-content;
+}
+input[type="submit"]
+{
+    font-size : 1.2em;
+    margin-top : 10px;
+    padding-block : 5px;
+    padding-inline : 10px;
+    color : black; 
+    background : #8bf6d7;
+    border-radius : 5px;
+    border : none;
+    cursor : pointer;
+}
+
+#capture_output 
+{
+    display: flex;
+    align-items: center;
+}
+#capture_output p
+{
+    margin : 10px;
+}
+
+.stdout,.stderr
+{
+    padding : 20px;
+    background : black;
+    width : 40%;
+    overflow-x: scroll;
+    border-radius: 10px;
+    font-size : 1.1em;
+}
+
+.feedback
+{
+    margin-left : 50px;
+}
+.stdout
+{
+    color : rgb(34, 204, 18);
+    background : black;
+}
+.stderr
+{   
+    color : red;
+    background : black;
+}
